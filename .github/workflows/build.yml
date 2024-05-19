@@ -48,8 +48,7 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: ${{ steps.set-mod-archive-base-name.outputs.ARCHIVE_BASENAME }} ${{ steps.set-mod-version.outputs.MOD_VERSION }}
-        run: |
-          gh release create "$tag" \
+        run: gh release create "$tag" \
               --repo="$GITHUB_REPOSITORY" \
               --title="${{ steps.set-mod-archive-base-name.outputs.ARCHIVE_BASENAME }} ${{ steps.set-mod-version.outputs.MOD_VERSION }}"
 
