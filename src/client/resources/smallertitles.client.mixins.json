@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "com.github.levoment.mixin.client",
+	"compatibilityLevel": "JAVA_21",
+	"client": [
+      "SmallTitlesClientMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

@@ -1,0 +1,38 @@
+{
+	"schemaVersion": 1,
+	"id": "smallertitles",
+	"version": "${version}",
+	"name": "Smaller Titles",
+	"description": "Make Titles Smaller or turn them off completely",
+	"authors": [
+		"Levoment"
+	],
+	"contact": {
+		"homepage": "",
+		"sources": ""
+	},
+	"license": "The Unlicense",
+	"icon": "assets/smallertitles/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.github.levoment.SmallerTitlesMod"
+		],
+		"client": [
+			"com.github.levoment.SmallerTitlesModClient"
+		]
+	},
+	"mixins": [
+		"smallertitles.mixins.json",
+		{
+			"config": "smallertitles.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.15.10",
+		"minecraft": "~1.20.6",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
