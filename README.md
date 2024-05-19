@@ -1,5 +1,9 @@
 # Smaller Titles
 
+![Top Center Title](./screenshots/top_center_title.png)
+
+![Top Left Title](./screenshots/left_title.png)
+
 ## Setup
 
 Drop the jar in the mods folder.
