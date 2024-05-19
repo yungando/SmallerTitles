@@ -42,15 +42,12 @@ jobs:
         run: echo "::set-output name=ARCHIVE_BASENAME::$(grep 'archives_base_name' ./gradle.properties | grep -P -o '(?<=\=).*' | sed -e 's/^[ \t]*//')"
       # Create release
       - name: Create release post
+      - run: gh release create "$tag" \
+            --repo="$GITHUB_REPOSITORY" \
+            --title="${{ steps.set-mod-archive-base-name.outputs.ARCHIVE_BASENAME }} ${{ steps.set-mod-version.outputs.MOD_VERSION }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref_name }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: ${{ steps.set-mod-archive-base-name.outputs.ARCHIVE_BASENAME }} ${{ steps.set-mod-version.outputs.MOD_VERSION }}
-        run: gh release create "$tag" \
-              --repo="$GITHUB_REPOSITORY" \
-              --title="${{ steps.set-mod-archive-base-name.outputs.ARCHIVE_BASENAME }} ${{ steps.set-mod-version.outputs.MOD_VERSION }}"
 
       # Create a release. Use the output from steps: set-mod-archive-base-name and set-mod-version for the name of the release
 #      - name : Create release
@@ -75,10 +72,8 @@ jobs:
 #          asset_path: ./build/libs/${{ steps.set-mod-archive-base-name.outputs.ARCHIVE_BASENAME }}-${{ steps.set-mod-version.outputs.MOD_VERSION }}.jar
 #          asset_name: ${{ steps.set-mod-archive-base-name.outputs.ARCHIVE_BASENAME }}-${{ steps.set-mod-version.outputs.MOD_VERSION }}.jar
 #          asset_content_type: application/jar
-
-      - name: Upload Release Asset
+      - run: |
+          gh release upload ${{ github.ref_name }} ./build/libs/${{ steps.set-mod-archive-base-name.outputs.ARCHIVE_BASENAME }}-${{ steps.set-mod-version.outputs.MOD_VERSION }}.jar
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref_name }}
-        run: |
-          gh release upload ${{ github.ref_name }} ./build/libs/${{ steps.set-mod-archive-base-name.outputs.ARCHIVE_BASENAME }}-${{ steps.set-mod-version.outputs.MOD_VERSION }}.jar
