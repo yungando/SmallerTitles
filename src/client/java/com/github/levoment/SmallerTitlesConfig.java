@@ -67,8 +67,8 @@ public class SmallerTitlesConfig {
                 subtitleYOffset =  Integer.valueOf(properties.getProperty("subtitleYOffset", "80"));
                 subtitleXOffset =  Integer.valueOf(properties.getProperty("subtitleXOffset", "0"));
                 subtitleScaleInX =  Float.valueOf(properties.getProperty("subtitleScaleInX", "0.5"));
-                subtitleScaleInY =  Float.valueOf(properties.getProperty("titleScaleInY", "0.5"));
-                subtitleScaleInZ =  Float.valueOf(properties.getProperty("titleScaleInZ", "0.5"));
+                subtitleScaleInY =  Float.valueOf(properties.getProperty("subtitleScaleInY", "0.5"));
+                subtitleScaleInZ =  Float.valueOf(properties.getProperty("subtitleScaleInZ", "0.5"));
                 showSubtitles = Boolean.valueOf(properties.getProperty("showSubtitles", "true"));
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
